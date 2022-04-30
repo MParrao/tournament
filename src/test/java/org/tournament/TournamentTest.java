@@ -47,7 +47,8 @@ public class TournamentTest {
     public void testReadFile() {
         try {
             String input = Tournament.readFile(Paths.get("src", "test", "resources", "tournament.txt"));
-            assertEquals(TestData.sampleInput, input);
+            String normalized=Tournament.normalizeString(TestData.sampleInput);
+            assertEquals(normalized, input);
         } catch (IOException e) {
             fail();
         }

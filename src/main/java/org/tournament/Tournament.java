@@ -70,7 +70,8 @@ public class Tournament {
      * @return List of matches already parsed
      */
     protected List<IMatch> getMatches(String tournamentInfo) {
-        return Arrays.stream(tournamentInfo.split(System.lineSeparator()))
+        // AS input was normalized we can use \n
+        return Arrays.stream(tournamentInfo.split("\n"))
                 .map(Tournament::parseMatchFromLine)
                 .collect(Collectors.toList());
     }
@@ -82,9 +83,20 @@ public class Tournament {
      * @throws IOException
      */
     protected static String readFile(Path path) throws IOException {
-        return Files.readString(path);
+        String input = Files.readString(path);
+        return normalizeString(input);
     }
 
+    /**
+     * Normalizes string line separators into \n);
+     * @param input
+     * @return
+     */
+    protected static String normalizeString(String input){
+        input = input.replaceAll("\\r\\n", "\n");
+        input = input.replaceAll("\\r", "\n");
+        return input;
+    }
     /**
      * Parses a {@link  org.tournament.IMatch  match} from a single line.
      * @param line containing the match of 2 teams, separated by coma

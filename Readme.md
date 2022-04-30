@@ -28,4 +28,5 @@ The expected output from above input is the following:
 
 1. Download/Clone this repository and run `mvn clean install`.
 2. Once the process is done run `java -classpath .\target\classes org.tournament.Tournament {file_path}`.
-   Being `{file_path}` the absolute path of the file containing the tournament information
+   Being `{file_path}` the absolute path of the file containing the tournament information.
+NOTE: Plese use the proper path separators to run the program for the classpath and file path ( `/` for unix and ` \ ` for windows  )
